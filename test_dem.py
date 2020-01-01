@@ -1,16 +1,10 @@
 import unittest
 from parcel import Parcel
-from dem import DEM, Polygon
-
-
-url_single = "https://services.gugik.gov.pl/nmt/?request=GetHByXY&x=486617&y=637928"
-url_list = "https://services.gugik.gov.pl/nmt/?request=GetHByPointList&list=563800 243490,563950 243490,563950 243400"
-url_polygon = "https://services.gugik.gov.pl/nmt/?request=GetMinMaxByPolygon&polygon=POLYGON((563800 243490 ... 563800 243490))&json"
-url_volume = "https://integracja.gugik.gov.pl/nmt/?request=GetVolume&polygon=POLYGON((563800 243490 ... 563800 243490))&level=300&json"
+from dem import DEM
 
 class TestDEM(unittest.TestCase):
     def setUp(self) -> None:
-        self.parcel = Parcel(addr="141201_1.0001.1867/2")
+        self.parcel = Parcel(addr="246101_1.0005.519")
         self.dem = DEM()
 
     def test_dem_xy(self):
