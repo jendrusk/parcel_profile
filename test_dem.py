@@ -20,6 +20,17 @@ class TestDEM(unittest.TestCase):
 
     def test_dem_min_max_polygon(self):
         res = self.dem.get_min_max_by_polygon(polygon=self.parcel.geom)
+        self.assertIsInstance(res, dict)
+        self.assertTrue(float(res.get("Hmin")))
+        self.assertTrue(float(res.get("Hmax")))
+
+    def test_dem_volume(self):
+        stats = self.dem.get_min_max_by_polygon(polygon=self.parcel.geom)
+        avg_level = (stats["Hmin"] + stats["Hmax"])/2
+        res = self.dem.get_volume(polygon=self.parcel.geom, level=avg_level)
+        self.assertIsInstance(res, dict)
+        self.assertTrue(float(res.get("Volume below")))
+        self.assertTrue(float(res.get("Volume above")))
 
 
 if __name__ == '__main__':
